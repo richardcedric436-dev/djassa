@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Djassa – Le grand marché africain en ligne</title>
+<meta name="description" content="Djassa : achetez et vendez des produits africains, partout dans le monde.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vert:#0B4F34; --vert-clair:#16774e; --orange:#F28C1F; --or:#F2B705;
+  --encre:#13241B; --fond:#FFFDF8; --gris:#5c6b63; --ligne:#e4e8e2;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Figtree,system-ui,sans-serif;background:var(--fond);color:var(--encre);line-height:1.55}
+h1,h2,h3,.logo{font-family:"Bricolage Grotesque",Figtree,sans-serif;line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* Bande pagne : l'élément signature */
+.pagne{height:18px;background:
+  linear-gradient(135deg,transparent 75%,var(--or) 75%) 0 0/18px 18px,
+  linear-gradient(225deg,transparent 75%,var(--vert) 75%) 0 0/18px 18px,
+  repeating-linear-gradient(90deg,var(--orange) 0 36px,var(--vert) 36px 54px,var(--or) 54px 66px,var(--encre) 66px 72px);}
+
+header{background:var(--vert);color:#fff}
+.top{display:flex;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
+.logo{font-size:1.9rem;font-weight:800;text-decoration:none;color:#fff;letter-spacing:-.5px}
+.logo span{color:var(--orange)}
+.search{flex:1;min-width:220px;display:flex}
+.search input{flex:1;border:0;padding:12px 16px;font:inherit;border-radius:10px 0 0 10px}
+.search button{border:0;background:var(--orange);color:var(--encre);font:inherit;font-weight:700;padding:0 20px;border-radius:0 10px 10px 0;cursor:pointer}
+.actions{display:flex;gap:18px;align-items:center;font-weight:500}
+.actions a{text-decoration:none}
+.cart{background:rgba(255,255,255,.14);padding:9px 14px;border-radius:10px;border:0;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.cart b{background:var(--orange);color:var(--encre);border-radius:99px;padding:1px 8px;margin-left:6px}
+
+.hero{background:var(--vert);color:#fff;padding:48px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;letter-spacing:-1px}
+.hero p{margin:18px 0 26px;max-width:46ch;font-size:1.1rem;color:#d7ece1}
+.btn{display:inline-block;background:var(--orange);color:var(--encre);font-weight:700;padding:13px 24px;border-radius:10px;text-decoration:none;border:0;font-size:1rem;cursor:pointer}
+.btn.contour{background:transparent;color:#fff;border:2px solid #fff;margin-left:10px}
+.etal{background:var(--fond);color:var(--encre);border-radius:16px;padding:22px;box-shadow:0 0 0 6px var(--or)}
+.etal h3{font-size:1.15rem;margin-bottom:12px}
+.etal ul{list-style:none;padding:0;display:grid;gap:10px}
+.etal li{padding-left:28px;position:relative}
+.etal li::before{content:"";position:absolute;left:0;top:6px;width:14px;height:14px;background:var(--orange);transform:rotate(45deg)}
+
+section{padding:44px 0}
+section h2{font-size:1.9rem;margin-bottom:18px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{border:2px solid var(--vert);background:#fff;color:var(--vert);font:inherit;font-weight:700;padding:8px 16px;border-radius:99px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--vert);color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px;margin-top:24px}
+.produit{border:1px solid var(--ligne);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.visuel{height:170px;background:var(--c1);background-image:
+  linear-gradient(135deg,var(--c2) 25%,transparent 25%),linear-gradient(225deg,var(--c2) 25%,transparent 25%);
+  background-size:34px 34px}
+.infos{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.infos h3{font-size:1.05rem}
+.vendeur{font-size:.88rem;color:var(--gris)}
+.prix{font-weight:800;font-size:1.2rem;margin-top:auto}
+.produit .btn{width:100%;text-align:center;padding:10px;margin-top:6px}
+.vide{margin-top:24px;color:var(--gris)}
+
+.vendre{background:var(--encre);color:#fff}
+.vendre .wrap{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.vendre p{color:#cfd9d3;max-width:56ch;margin-top:8px}
+
+footer{padding:30px 0;color:var(--gris);font-size:.92rem}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--encre);color:#fff;padding:12px 20px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+@media (max-width:760px){
+  .hero .wrap,.vendre .wrap{grid-template-columns:1fr}
+  .btn.contour{margin:10px 0 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap top">
+    <a class="logo" href="#">Djas<span>sa</span></a>
+    <form class="search" role="search" id="formRecherche">
+      <input id="recherche" type="search" placeholder="Cherchez un pagne, du karité, un café…" aria-label="Rechercher un produit">
+      <button type="submit">Chercher</button>
+    </form>
+    <nav class="actions">
+      <a href="#vendre">Vendre sur Djassa</a>
+      <a href="#">Connexion</a>
+      <button class="cart" id="panier" type="button">Panier <b id="nb">0</b></button>
+    </nav>
+  </div>
+  <div class="pagne" aria-hidden="true"></div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Le grand marché d'Afrique, ouvert au monde entier.</h1>
+        <p>Des vendeurs de Côte d'Ivoire et d'ailleurs vous proposent mode, beauté, alimentation et artisanat. Commandez de chez vous, recevez où vous voulez.</p>
+        <a class="btn" href="#produits">Voir les produits</a>
+        <a class="btn contour" href="#vendre">Ouvrir ma boutique</a>
+      </div>
+      <aside class="etal">
+        <h3>Pourquoi acheter au Djassa ?</h3>
+        <ul>
+          <li>Des vendeurs réels, avec leur boutique et leurs avis</li>
+          <li>Paiement par Mobile Money ou carte bancaire</li>
+          <li>Livraison en Côte d'Ivoire et à l'international</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  <div class="pagne" aria-hidden="true"></div>
+
+  <section id="produits">
+    <div class="wrap">
+      <h2>Au marché aujourd'hui</h2>
+      <div class="chips" id="categories" role="group" aria-label="Catégories"></div>
+      <div class="grid" id="liste"></div>
+      <p class="vide" id="vide" hidden>Aucun produit ne correspond. Essayez un autre mot ou une autre catégorie.</p>
+    </div>
+  </section>
+
+  <section class="vendre" id="vendre">
+    <div class="wrap">
+      <div>
+        <h2>Vous avez un produit à vendre ?</h2>
+        <p>Créez votre boutique, ajoutez vos produits, choisissez vos zones de livraison et vos moyens de paiement. Djassa vous amène les acheteurs.</p>
+      </div>
+      <a class="btn" href="#">Ouvrir ma boutique</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Djassa. Prototype en construction : les produits affichés sont des exemples.</div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Données d'exemple : elles viendront plus tard d'une base de données (back-end).
+const PRODUITS = [
+  {nom:"Pagne wax, 6 yards", vendeur:"Boutique Adjoua, Abidjan", prix:18000, cat:"Mode", c1:"#F28C1F", c2:"#0B4F34"},
+  {nom:"Boubou brodé homme", vendeur:"Atelier Koffi, Bouaké", prix:45000, cat:"Mode", c1:"#0B4F34", c2:"#F2B705"},
+  {nom:"Sac en cuir de Korhogo", vendeur:"Coopérative Sénoufo, Korhogo", prix:32000, cat:"Artisanat", c1:"#7a4a21", c2:"#e9d3a8"},
+  {nom:"Masque décoratif sculpté", vendeur:"Atelier Yacouba, Man", prix:28000, cat:"Artisanat", c1:"#13241B", c2:"#F28C1F"},
+  {nom:"Beurre de karité pur, 500 g", vendeur:"Karité du Nord, Ferkessédougou", prix:6500, cat:"Beauté", c1:"#F2B705", c2:"#fff3c4"},
+  {nom:"Savon noir artisanal", vendeur:"Beauté Naturelle, Abidjan", prix:2500, cat:"Beauté", c1:"#2b2b2b", c2:"#16774e"},
+  {nom:"Café de Daloa, 1 kg", vendeur:"Torréfaction Gnagna, Daloa", prix:9000, cat:"Alimentation", c1:"#5a3418", c2:"#F28C1F"},
+  {nom:"Attiéké séché, 1 kg", vendeur:"Maman Affoué, Dabou", prix:4000, cat:"Alimentation", c1:"#f3e3b0", c2:"#F2B705"}
+];
+const fcfa = n => n.toLocaleString("fr-FR") + " FCFA";
+let categorie = "Tout", terme = "", panier = 0;
+
+const liste = document.getElementById("liste"), vide = document.getElementById("vide");
+const chips = document.getElementById("categories");
+
+["Tout", ...new Set(PRODUITS.map(p => p.cat))].forEach(c => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.textContent = c;
+  b.setAttribute("aria-pressed", c === categorie);
+  b.onclick = () => { categorie = c; [...chips.children].forEach(x => x.setAttribute("aria-pressed", x === b)); afficher(); };
+  chips.appendChild(b);
+});
+
+function afficher(){
+  const t = terme.trim().toLowerCase();
+  const res = PRODUITS.filter(p => (categorie === "Tout" || p.cat === categorie) &&
+    (!t || (p.nom + " " + p.vendeur).toLowerCase().includes(t)));
+  liste.innerHTML = "";
+  res.forEach(p => {
+    const el = document.createElement("article");
+    el.className = "produit";
+    el.innerHTML = `<div class="visuel" style="--c1:${p.c1};--c2:${p.c2}" role="img" aria-label="Image à venir : ${p.nom}"></div>
+      <div class="infos"><h3></h3><span class="vendeur"></span><span class="prix">${fcfa(p.prix)}</span>
+      <button class="btn" type="button">Ajouter au panier</button></div>`;
+    el.querySelector("h3").textContent = p.nom;
+    el.querySelector(".vendeur").textContent = p.vendeur;
+    el.querySelector("button").onclick = () => ajouter(p.nom);
+    liste.appendChild(el);
+  });
+  vide.hidden = res.length > 0;
+}
+
+function ajouter(nom){
+  panier++; document.getElementById("nb").textContent = panier;
+  const t = document.getElementById("toast");
+  t.textContent = nom + " ajouté au panier";
+  t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 1800);
+}
+
+document.getElementById("formRecherche").onsubmit = e => { e.preventDefault(); terme = document.getElementById("recherche").value; afficher(); location.hash = "produits"; };
+document.getElementById("recherche").oninput = e => { terme = e.target.value; afficher(); };
+afficher();
+</script>
+</body>
+</html>
